@@ -11,7 +11,7 @@ pipeline {
             when {
                 anyOf {
                     branch 'feature/voight-kampff'
-                    changeRequest
+                    changeRequest()
                 }
             }
             steps {
