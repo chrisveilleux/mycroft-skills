@@ -15,7 +15,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'docker build -t voight-kampff-skill:test .'
+                sh 'docker build -e BRANCH_NAME=${BRANCH_NAME} -t voight-kampff-skill:test .'
 //                 echo 'Running Tests'
 //                 timeout(time: 10, unit: 'MINUTES')
 //                 {
