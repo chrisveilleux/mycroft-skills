@@ -7,6 +7,7 @@ ARG platform
 WORKDIR /opt/mycroft/mycroft-core/.venv
 COPY test-requirements.txt .
 RUN bin/python -m pip install -r test-requirements.txt
+COPY voight_kampff.py .
 RUN bin/python voight_kampff.py --pull-request $pull_request --platform $platform
 #RUN msm install ${skill} -b ${BRANCH_NAME}
 #WORKDIR /opt/mycroft/mycroft-core
