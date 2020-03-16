@@ -1,7 +1,7 @@
 # Run skill changes against the last major release of Mycroft Core but install
 # the latest version of all skills.
 ARG branch_name
-FROM voight_kampff-mark-1:${branch_name}
+FROM voight_kampff-mark-1:$branch_name
 ARG pull_request
 ARG platform
 WORKDIR /opt/mycroft/mycroft-core/.venv
