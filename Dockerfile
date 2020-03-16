@@ -1,8 +1,9 @@
 # Run skill changes against the last major release of Mycroft Core but install
 # the latest version of all skills.
+ARG branch_name
+FROM voight_kampff-mark-1:${branch_name}
 ARG pull_request
 ARG platform
-FROM voight_kampff-mark-1:${BRANCH_NAME}
 WORKDIR /opt/mycroft/mycroft-core/.venv
 COPY test-requirements.txt .
 RUN bin/python -m pip install -r test_requirements.txt
