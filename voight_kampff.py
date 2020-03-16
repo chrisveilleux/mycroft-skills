@@ -38,28 +38,30 @@ for line in pr_diff.text.split('\n'):
         skill_submodule_name = diff_file_name
         break
 
-# There are files in the repository that are not skill subprojects.
-# No need to run the tests if a skill is not changed.
-if skill_submodule_name is not None:
-    docker_image_name = 'voight-kampff-skill:' + skill_submodule_name
-    docker_client = docker.from_env()
-    docker_client.build(
-        path=str(Path.cwd()),
-        tag=docker_image_name,
-        buildargs=dict(skill=skill_submodule_name, platform=args.platform)
-    )
-    volumes = {
-        '$HOME/voight-kampff/identity': dict(
-            bind='/root/.mycroft/identity',
-            mode='rw'
-        ),
-        '$HOME/voight-kampff/': dict(bind='/root/allure', mode='rw'),
-    }
-    docker.client.run(
-        image=docker_image_name,
-        command=[
-            '-f allure_behave.formatter:AllureFormatter',
-            '-o /root/allure/allure-result',
-            '--tags ~@xfail'
-        ]
-    )
+print(skill_submodule_name)
+
+# # There are files in the repository that are not skill subprojects.
+# # No need to run the tests if a skill is not changed.
+# if skill_submodule_name is not None:
+#     docker_image_name = 'voight-kampff-skill:' + skill_submodule_name
+#     docker_client = docker.from_env()
+#     docker_client.build(
+#         path=str(Path.cwd()),
+#         tag=docker_image_name,
+#         buildargs=dict(skill=skill_submodule_name, platform=args.platform)
+#     )
+#     volumes = {
+#         '$HOME/voight-kampff/identity': dict(
+#             bind='/root/.mycroft/identity',
+#             mode='rw'
+#         ),
+#         '$HOME/voight-kampff/': dict(bind='/root/allure', mode='rw'),
+#     }
+#     docker.client.run(
+#         image=docker_image_name,
+#         command=[
+#             '-f allure_behave.formatter:AllureFormatter',
+#             '-o /root/allure/allure-result',
+#             '--tags ~@xfail'
+#         ]
+#     )
