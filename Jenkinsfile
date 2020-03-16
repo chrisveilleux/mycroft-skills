@@ -15,7 +15,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'docker build -t voight-kampff-skill:${BRANCH_ALIAS} .'
+                sh 'docker build -t voight-kampff-skill:test .'
 //                 echo 'Running Tests'
 //                 timeout(time: 10, unit: 'MINUTES')
 //                 {
