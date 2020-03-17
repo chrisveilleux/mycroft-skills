@@ -20,7 +20,7 @@ args = arg_parser.parse_args()
 
 pr_number = int(args.pull_request.strip('PR-'))
 g = Github('chrisveilleux', 'uq%Bd3GzFA3JEkH*7tf3')
-repo = g.get_repo('MycroftAI/mycroft-skills')
+repo = g.get_repo('chrisveilleux/mycroft-skills')
 pr = repo.get_pull(pr_number)
 
 # Determine if the PR is for a new or updated skill by inspecting the PR diff
