@@ -55,18 +55,18 @@ pipeline {
 //             }
         }
     }
-    post {
-        cleanup {
-            sh(
-                label: 'Docker Container and Image Cleanup',
-                script: '''
-                    docker container prune --force;
-                    docker image prune --force;
-                '''
-            )
-        }
-        always {
-            githubNotify context: 'Voight Kampff Test...', description: 'Static Check Tests Passed', status: 'SUCCESS'
-        }
-    }
+//     post {
+//         cleanup {
+//             sh(
+//                 label: 'Docker Container and Image Cleanup',
+//                 script: '''
+//                     docker container prune --force;
+//                     docker image prune --force;
+//                 '''
+//             )
+//         }
+//         always {
+//             githubNotify context: 'Voight Kampff Test...', description: 'Static Check Tests Passed', status: 'SUCCESS'
+//         }
+//     }
 }
