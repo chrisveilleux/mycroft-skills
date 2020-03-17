@@ -25,6 +25,7 @@ pr = repo.get_pull(pr_number)
 
 # Determine if the PR is for a new or updated skill by inspecting the PR diff
 pr_diff = requests.get(pr.diff_url)
+print('foo')
 print(pr_diff.text)
 diff_file_name = None
 skill_submodule_name = None
