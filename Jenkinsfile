@@ -15,7 +15,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'docker build -e BRANCH_NAME=${BRANCH_NAME} -t voight-kampff-skill:test .'
+                sh 'docker build --build-arg branch_name=96.02 --build-arg platform=mycroft_mark_1 --build-arg pull_request=PR-2 -t voight-kampff-skill:test .'
 //                 echo 'Running Tests'
 //                 timeout(time: 10, unit: 'MINUTES')
 //                 {
@@ -55,18 +55,18 @@ pipeline {
 //             }
         }
     }
-    post {
-        cleanup {
-            sh(
-                label: 'Docker Container and Image Cleanup',
-                script: '''
-                    docker container prune --force;
-                    docker image prune --force;
-                '''
-            )
-        }
-        always {
-            githubNotify context: 'Voight Kampff Test...', description: 'Static Check Tests Passed', status: 'SUCCESS'
-        }
-    }
+//     post {
+//         cleanup {
+//             sh(
+//                 label: 'Docker Container and Image Cleanup',
+//                 script: '''
+//                     docker container prune --force;
+//                     docker image prune --force;
+//                 '''
+//             )
+//         }
+//         always {
+//             githubNotify context: 'Voight Kampff Test...', description: 'Static Check Tests Passed', status: 'SUCCESS'
+//         }
+//     }
 }
