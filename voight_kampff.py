@@ -38,8 +38,10 @@ for line in pr_diff.text.split('\n'):
         skill_submodule_name = diff_file_name
         break
 
-# There are files in the repository that are not skill subprojects.
-# No need to run the tests if a skill is not changed.
+print(skill_submodule_name)
+
+# # There are files in the repository that are not skill subprojects.
+# # No need to run the tests if a skill is not changed.
 # if skill_submodule_name is not None:
 #     docker_image_name = 'voight-kampff-skill:' + skill_submodule_name
 #     docker_client = docker.from_env()
