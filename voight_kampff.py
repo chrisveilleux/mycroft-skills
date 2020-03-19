@@ -25,8 +25,6 @@ pr = repo.get_pull(pr_number)
 
 # Determine if the PR is for a new or updated skill by inspecting the PR diff
 pr_diff = requests.get(pr.diff_url)
-print('foo')
-print(pr_diff.text)
 diff_file_name = None
 skill_submodule_name = None
 for line in pr_diff.text.split('\n'):
@@ -40,10 +38,8 @@ for line in pr_diff.text.split('\n'):
         skill_submodule_name = diff_file_name
         break
 
-print(skill_submodule_name)
-
-# # There are files in the repository that are not skill subprojects.
-# # No need to run the tests if a skill is not changed.
+# There are files in the repository that are not skill subprojects.
+# No need to run the tests if a skill is not changed.
 # if skill_submodule_name is not None:
 #     docker_image_name = 'voight-kampff-skill:' + skill_submodule_name
 #     docker_client = docker.from_env()
