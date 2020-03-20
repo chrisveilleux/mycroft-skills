@@ -14,7 +14,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'docker build --build-arg branch_name=96.02 --build-arg platform=mycroft_mark_1 --build-arg pull_request=PR-2 --no-cache -t voight-kampff-skill:test .'
+                sh 'docker build --build-arg branch_name=20.02 --build-arg platform=mycroft_mark_1 --build-arg pull_request=PR-2 --no-cache -t voight-kampff-skill:test .'
 //                 echo 'Running Tests'
 //                 timeout(time: 10, unit: 'MINUTES')
 //                 {
