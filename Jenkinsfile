@@ -10,7 +10,6 @@ pipeline {
         stage('Run Integration Tests') {
             when {
                 anyOf {
-                    branch 'feature/voight-kampff'
                     changeRequest()
                 }
             }
