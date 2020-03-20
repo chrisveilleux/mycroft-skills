@@ -4,10 +4,9 @@ ARG branch_name
 FROM voight-kampff-mark-1:${branch_name}
 ARG pull_request
 ARG platform
-WORKDIR /opt/mycroft/mycroft-core/.venv
+WORKDIR /opt/mycroft/mycroft-core
 COPY test-requirements.txt .
-RUN bin/python -m pip install -r test-requirements.txt
+RUN .venv/bin/python -m pip install -r test-requirements.txt
 COPY voight_kampff.py .
-RUN bin/python voight_kampff.py --pull-request $pull_request --platform $platform
-#WORKDIR /opt/mycroft/mycroft-core
-#RUN python -m test.integrationtests.voight_kampff.test_setup --tested-skills $skill --platform $platform
+RUN .venv/bin/python voight_kampff.py --pull-request $pull_request --platform $platform
+RUN python -m test.integrationtests.voight_kampff.test_setup --config test_skill.yml --platform $platform
