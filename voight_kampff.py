@@ -38,7 +38,9 @@ for line in pr_diff.text.split('\n'):
         skill_submodule_name = diff_file_name
         break
 
-print('export SKILL_NAME={}'.format(skill_submodule_name))
+with open('skill_test.yaml', 'w') as config_file:
+    config_file.write('tested_skills:\n')
+    config_file.write('- ' + skill_submodule_name + '\n')
 
 # # There are files in the repository that are not skill subprojects.
 # # No need to run the tests if a skill is not changed.
