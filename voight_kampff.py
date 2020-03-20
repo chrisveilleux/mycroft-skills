@@ -38,7 +38,7 @@ for line in pr_diff.text.split('\n'):
         skill_submodule_name = diff_file_name
         break
 
-with open('skill_test.yaml', 'w') as config_file:
+with open('test_skill.yml', 'w') as config_file:
     config_file.write('tested_skills:\n')
     config_file.write('- ' + skill_submodule_name + '\n')
 
