@@ -17,9 +17,9 @@ pipeline {
                 sh 'docker build \
                     --build-arg major_release=20.02 \
                     --build-arg platform=mycroft_mark_1 \
-                    --build-arg pull_request=PR-2
-                    --build-arg branch_name = ${BRANCH_NAME}
-                    --no-cache
+                    --build-arg pull_request=PR-2 \
+                    --build-arg branch_name = ${BRANCH_NAME} \
+                    --no-cache \
                     -t voight-kampff-skill:test .'
 //                 echo 'Running Tests'
 //                 timeout(time: 10, unit: 'MINUTES')
