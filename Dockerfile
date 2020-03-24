@@ -12,6 +12,6 @@ COPY voight_kampff.py .
 RUN .venv/bin/python voight_kampff.py --pull-request $pull_request --platform $platform
 RUN python -m test.integrationtests.voight_kampff.test_setup --config test_skill.yml --platform $platform --branch $branch_name --repo-url https://github.com/chrisveilleux/mycroft-skills
 # Setup and run the integration tests
-#ENV PYTHONPATH /opt /mycroft/mycroft-core/
-#WORKDIR /opt/mycroft/mycroft-core/test/integrationtests/voight_kampff
-#ENTRYPOINT ["./run_test_suite.sh"]
+ENV PYTHONPATH /opt /mycroft/mycroft-core/
+WORKDIR /opt/mycroft/mycroft-core/test/integrationtests/voight_kampff
+ENTRYPOINT ["./run_test_suite.sh"]
