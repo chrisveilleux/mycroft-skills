@@ -28,7 +28,7 @@ pipeline {
                     sh 'docker run \
                         -v "$HOME/voight-kampff/identity:/root/.mycroft/identity" \
                         -v "$HOME/voight-kampff/:/root/allure" \
-                       voight-kampff-mark-1:${BRANCH_ALIAS} \
+                       voight-kampff-skill:test \
                         -f allure_behave.formatter:AllureFormatter \
                         -o /root/allure/allure-result --tags ~@xfail'
                 }
