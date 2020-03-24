@@ -4,6 +4,7 @@ pipeline {
         // Running builds concurrently could cause a race condition with
         // building the Docker image.
         disableConcurrentBuilds()
+        buildDiscarder(logRotator(numToKeepStr: '5'))
     }
     stages {
         // Run the build in the against the dev branch to check for compile errors
@@ -21,17 +22,16 @@ pipeline {
                     --build-arg branch_name=$CHANGE_BRANCH \
                     --no-cache \
                     -t voight-kampff-skill:test .'
-//                 echo 'Running Tests'
-//                 timeout(time: 10, unit: 'MINUTES')
-//                 {
-//                     sh 'docker run \
-//                         -v "$HOME/voight-kampff:/root/.mycroft" \
-//                         --device /dev/snd \
-//                         -e PULSE_SERVER=unix:${XDG_RUNTIME_DIR}/pulse/native \
-//                         -v ${XDG_RUNTIME_DIR}/pulse/native:${XDG_RUNTIME_DIR}/pulse/native \
-//                         -v ~/.config/pulse/cookie:/root/.config/pulse/cookie \
-//                         mycroft-core:${BRANCH_ALIAS}'
-//                 }
+                echo 'Running Tests'
+                timeout(time: 60, unit: 'MINUTES')
+                {
+                    sh 'docker run \
+                        -v "$HOME/voight-kampff/identity:/root/.mycroft/identity" \
+                        -v "$HOME/voight-kampff/:/root/allure" \
+                       voight-kampff-mark-1:${BRANCH_ALIAS} \
+                        -f allure_behave.formatter:AllureFormatter \
+                        -o /root/allure/allure-result --tags ~@xfail'
+                }
             }
 //             post {
 //                 always {
