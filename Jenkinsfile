@@ -15,7 +15,7 @@ pipeline {
                 }
             }
             environment {
-                spawns GITHUB_USR and GITHUB_PSW environment variables
+                //spawns GITHUB_USR and GITHUB_PSW environment variables
                 GITHUB=credentials('github')
             }
             steps {
