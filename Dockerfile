@@ -16,6 +16,8 @@ COPY build_test_config.py .
 RUN .venv/bin/python build_test_config.py --pull-request $pull_request --platform $platform
 
 FROM config_builder as test_setup
+ARG platform
+ARG branch_name
 RUN python -m test.integrationtests.voight_kampff.test_setup \
     --config test_skill.yml \
     --platform $platform \
