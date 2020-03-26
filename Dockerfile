@@ -1,15 +1,21 @@
 # Run skill changes against the last major release of Mycroft Core but install
 # the latest version of all skills.
 ARG major_release
-FROM voight-kampff-mark-1:${major_release}
+FROM voight-kampff-mark-1:${major_release} as config_builder
 ARG pull_request
 ARG platform
 ARG branch_name
+ARG github_user
+ARG github_password
+ENV GITHUB_USER=$github_user
+ENV GITHUB_PASSWORD=$github_password
 WORKDIR /opt/mycroft/mycroft-core
 COPY test-requirements.txt skill-test-requirements.txt
 RUN .venv/bin/python -m pip install -r skill-test-requirements.txt
 COPY build_test_config.py .
 RUN .venv/bin/python build_test_config.py --pull-request $pull_request --platform $platform
+
+FROM config_builder as test_setup
 RUN python -m test.integrationtests.voight_kampff.test_setup \
     --config test_skill.yml \
     --platform $platform \
