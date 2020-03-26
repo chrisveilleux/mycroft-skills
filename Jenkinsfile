@@ -14,10 +14,10 @@ pipeline {
                     changeRequest()
                 }
             }
-//             environment {
-                //spawns GITHUB_USR and GITHUB_PSW environment variables
-//                 GITHUB=credentials('c5770310-9e46-4ab1-84d4-bb17ae2b2bfb')
-//             }
+            environment {
+                spawns GITHUB_USR and GITHUB_PSW environment variables
+                GITHUB=credentials('github')
+            }
             steps {
                 sh 'docker build \
                     --build-arg major_release=20.02 \
