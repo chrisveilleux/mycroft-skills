@@ -5,6 +5,7 @@ mycroft-skills.  The test setup script installs the skills to include in the
 test and copies their feature files over to core for inclusion in the tests.
 """
 from argparse import ArgumentParser
+from os import environ
 
 import requests
 from github import Github
@@ -30,8 +31,8 @@ def parse_command_line():
 def get_pull_request_diff(args):
     """Get the difference between the base branch and the modified branch."""
     pr_number = int(args.pull_request.strip('PR-'))
-    g = Github('chrisveilleux', 'uq%Bd3GzFA3JEkH*7tf3')
-    repo = g.get_repo('chrisveilleux/mycroft-skills')
+    g = Github(environ['GITHUB_USER'], environ['GITHUB_PASSWORD'])
+    repo = g.get_repo('MycroftAI/mycroft-skills')
     pr = repo.get_pull(pr_number)
     pr_diff = requests.get(pr.diff_url)
 
