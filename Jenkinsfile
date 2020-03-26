@@ -14,6 +14,10 @@ pipeline {
                     changeRequest()
                 }
             }
+            environment {
+                // spawns GITHUB_USR and GITHUB_PSW environment variables
+                GITHUB=credentials('c5770310-9e46-4ab1-84d4-bb17ae2b2bfb')
+            }
             steps {
                 sh 'docker build \
                     --build-arg major_release=20.02 \
@@ -26,8 +30,10 @@ pipeline {
                 timeout(time: 60, unit: 'MINUTES')
                 {
                     sh 'docker run \
-                        -v "$HOME/voight-kampff/identity:/root/.mycroft/identity" \
-                        -v "$HOME/voight-kampff/:/root/allure" \
+                        --env GITHUB_USER=$GITHUB_USR
+                        --env GITHUB_PASSWORD=$GITHUB_PSW
+                        --volume "$HOME/voight-kampff/identity:/root/.mycroft/identity" \
+                        --volume "$HOME/voight-kampff/:/root/allure" \
                         voight-kampff-skill:$BRANCH_NAME \
                         -f allure_behave.formatter:AllureFormatter \
                         -o /root/allure/allure-result --tags ~@xfail'
