@@ -30,8 +30,8 @@ pipeline {
                 timeout(time: 60, unit: 'MINUTES')
                 {
                     sh 'docker run \
-                        --env GITHUB_USER=$GITHUB_USR
-                        --env GITHUB_PASSWORD=$GITHUB_PSW
+                        --env GITHUB_USER=$GITHUB_USR \
+                        --env GITHUB_PASSWORD=$GITHUB_PSW \
                         --volume "$HOME/voight-kampff/identity:/root/.mycroft/identity" \
                         --volume "$HOME/voight-kampff/:/root/allure" \
                         voight-kampff-skill:$BRANCH_NAME \
